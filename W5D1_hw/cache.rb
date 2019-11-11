@@ -11,7 +11,7 @@ class LRUCache
 
     def add(ele)
       if @cache.include?(ele)
-        self.delete(ele)
+        delete(ele)
         @cache << ele
       elsif @cache.length == @size && !@cache.include?(ele)
         @cache.shift
