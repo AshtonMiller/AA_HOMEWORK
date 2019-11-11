@@ -1,0 +1,52 @@
+
+class LRUCache
+    def initialize(size)
+        @size = size
+        @cache = []
+    end
+
+    def count
+      @cache.length
+    end
+
+    def add(ele)
+      if @cache.include?(ele)
+        self.delete(ele)
+        @cache << ele
+      elsif @cache.length == @size && !@cache.include?(ele)
+        @cache.shift
+        @cache << ele
+      else 
+        @cache << ele
+      end 
+    end
+
+    def show
+      p @cache
+    end
+
+    private 
+    def delete(ele)
+        @cache.delete(ele)
+    end 
+  end
+
+johnny_cache = LRUCache.new(5)
+
+johnny_cache.add("I walk the line")
+johnny_cache.add(5)
+# johnny_cache.show
+johnny_cache.count # => returns 2
+
+johnny_cache.add([1,2,3])
+johnny_cache.add(5)
+johnny_cache.add(-5)
+johnny_cache.add({a: 1, b: 2, c: 3})
+johnny_cache.add([1,2,3,4])
+johnny_cache.add("I walk the line")
+johnny_cache.add(:ring_of_fire)
+johnny_cache.add("I walk the line")
+johnny_cache.add({a: 1, b: 2, c: 3})
+
+
+johnny_cache.show 
